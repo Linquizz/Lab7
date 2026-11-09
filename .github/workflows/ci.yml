@@ -1,0 +1,26 @@
+name: Test workflow
+
+on: [workflow_dispatch]
+
+jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+        - name: Set up .NET
+          uses: actions/setup-dotnet@v4
+          with:
+            dotnet-version: 10.0.x
+        - name: Create .gitignore dotnet
+          run: dotnet new gitignore
+        - name: Push .gitignore to repository
+          run: dotnet new gitignore
+        - name: Commit and push changes
+          run: |
+              git config --global user.name "Linquizz"
+              git config --global user.email "arslom007@g,ail.com"
+              git add .gitignore
+              git commit -m "Add .gitignore"
+              git push
+          
